@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const url = require("url");
-const port = 4444;
 const cors = require("cors");
 var a = [];
 app.use(cors({ origin: true }));
@@ -14,7 +13,6 @@ app.get("/post",(req, res) => {
     a.shift();
   }
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.end("");
@@ -25,6 +23,12 @@ app.get("/get",(req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.end(JSON.stringify(a));
 });
-app.listen(port, () => {
+app.get("/", (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.send('Routes are /post and /get');
+});
+app.listen(4444, () => {
   console.log("Listening on https://127.0.0.1:4444")  
-})
+});
