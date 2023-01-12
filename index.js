@@ -11,12 +11,18 @@ app.get("/post",(req, res) => {
     a.shift();
   }
   res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.end("");
 });
 app.get("/get",(req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.end(JSON.stringify(a));
 });
 app.get("/", (req, res) => {
+  res.statusCode = 200;
   res.send('Routes are /post and /get');
 });
 app.listen(4444, () => {
