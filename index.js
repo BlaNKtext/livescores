@@ -1,12 +1,12 @@
 import { Router } from 'itty-router'
 const router = Router()
 import  url  from 'url'
+const a = []
 router.get("/", () => {
   return new Response("Routes are /get and /post")
 })
 
 router.get("/get",(req, res) => {
-  const a = []
   const returnData = JSON.stringify(a)
   return new Response(returnData, {
     headers: {
