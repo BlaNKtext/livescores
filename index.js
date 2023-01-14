@@ -1,27 +1,33 @@
-const express = require("express");
-const app = express();
-const url = require("url");
-var a = [];
-app.get("/post",(req, res) => {
-  var q = url.parse(req.url, true).query;
+import { Router } from 'itty-router'
+const router = Router()
+import  url  from 'url'
+let a = []
+router.get("/", () => {
+  return new Response("Routes are /get and /post")
+})
+router.get("/get",(req, res) => {
+  const returnData = JSON.stringify(a)
+  return new Response(returnData, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+})
+router.get("/post",(req, res) => {
+  let q = url.parse(req.url, true).query;
   if (q.title || q.sid) {
     a.push(q);
   }
   if (a.length > 16) {
     a.shift();
   }
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.end("");
-});
-app.get("/get",(req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.end(JSON.stringify(a));
-});
-app.get("/", (req, res) => {
-  res.statusCode = 200;
-  res.send('Routes are /post and /get');
-});
+  return new Response("", {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+})
+router.all("*", () => new Response("404, not found!", { status: 404 }))
+addEventListener('fetch', (e) => {
+  e.respondWith(router.handle(e.request))
+})
