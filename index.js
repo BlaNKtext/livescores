@@ -25,6 +25,3 @@ app.get("/", (req, res) => {
   res.statusCode = 200;
   res.send('Routes are /post and /get');
 });
-app.listen(4444, () => {
-  console.log("Listening on http://localhost:4444")  
-});
