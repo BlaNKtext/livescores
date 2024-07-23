@@ -1,4 +1,7 @@
 name = "scores"
 account_id = "f76e74d189405c0cc9483a98acb6bdd0"
 main = "worker.js"
+routes = [
+	{ pattern = "scores.webosu.online", custom_domain = true }
+]
 compatibility_date = "2023-08-23"
