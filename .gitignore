@@ -2,3 +2,7 @@ node_modules/
 worker/
 .cargo-ok
 package-lock.json
+
+# wrangler files
+.wrangler
+.dev.vars
