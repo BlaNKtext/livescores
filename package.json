@@ -6,9 +6,15 @@
   "repository": "https://github.com/BlaNKtext/livescores.git",
   "author": "BlaNKtext <blanktextt@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
   "dependencies": {
     "cloudflare": "^3.5.0",
     "create-cloudflare": "^2.22.1",
+    "itty-router": "^5.0.17",
+    "url": "^0.11.3",
     "wrangler": "^3.65.1"
   }
 }
