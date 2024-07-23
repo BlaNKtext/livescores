@@ -1,20 +1,24 @@
 {
-    "name": "{{ project-name }}",
+    "name": "{{ livescores }}",
     "private": true,
-    "version": "1.0.0",
-    "description": "package for creating workers templates",
+    "version": "1.0.1",
+    "description": "A reallyyyyy rudimentary GET POST server to run the Live score section on webosu!",
+    "type": "module",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier --write '**/*.{js,css,json,md}'"
+        "start": "node index.js",
+        "deploy": "wrangler deploy",
+        "dev": "wrangler dev",
+        "format": "prettier --write '**/*.{js,json,md}'"
     },
     "author": "{{ authors }}",
     "license": "ISC",
     "devDependencies": {
-        "prettier": "^1.17.0"
+        "prettier": "^3.3.3",
+        "wrangler": "^3.65.1"
     },
     "dependencies": {
-        "itty-router": "^2.1.9",
-        "serverless-cloudflare-workers": "^1.2.0"
+        "itty-router": "^5.0.17",
+        "serverless-cloudflare-workers": "^0.1.1"
     }
 }

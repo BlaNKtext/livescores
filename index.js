@@ -1,37 +1,35 @@
-import { Router } from 'itty-router'
-const router = Router()
-import  url  from 'url'
-const a = []
-router.get("/", () => {
-  return new Response("Routes are /get and /post")
-})
-
-router.get("/get",(req, res) => {
-  const returnData = JSON.stringify(a)
-  return new Response(returnData, {
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
-    }
+import { AutoRouter } from 'itty-router'
+const router = AutoRouter()
+//!WORKING ON REWRITING. NOT YET FUNCTIONAL
+router
+  .get('/', () => `Valid routes are: /get | /post`)
+  .get('/get',(req, res) => {
+    const returnData = JSON.stringify(a)
+    return new Response(returnData, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
   })
-})
-
-router.get("/post",(req, res) => {
-  let q = url.parse(req.url, true).query
-  if (q.title || q.sid) {
-    a.push(q)
-  }
-  if (a.length > 16) {
-    a.shift()
-  }
-  return new Response("", {
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+  .get('/post',(req, res) => {
+    let q = url.parse(req.url, true).query
+    if (q.title || q.sid) {
+      a.push(q)
     }
+    if (a.length > 16) {
+      a.shift()
+    }
+    return new Response("", {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
   })
-})
-router.all("*", () => new Response("404, not found!", { status: 404 }))
-addEventListener('fetch', (e) => {
+
+router.all("*", () => new Response("This isnt a valid route, silly!!", { status: 404 }))
+router.fetch(('fetch', (e) => {
   e.respondWith(router.handle(e.request))
-})
+}))
+export default router

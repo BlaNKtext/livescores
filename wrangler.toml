@@ -1,6 +1,0 @@
-name = "livescores"
-
-account_id = "f76e74d189405c0cc9483a98acb6bdd0"
-workers_dev = true
-node_compat = true
-compatibility_date = "2023-01-14"
