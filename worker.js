@@ -33,5 +33,12 @@ router.get("/get",(req, res) => {
         "Access-Control-Allow-Origin": "*"}
     })
   })
-router.all("*", () => new Response("This route doesnt exist, silly!", { status: 404 }))
+router.all("*", () => new Response("This route doesnt exist, silly!", {
+   status: 404,
+   method: 'POST',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"}
+}))
 export default router
