@@ -7,7 +7,7 @@
   "author": "BlaNKtext <blanktextt@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "npm install && node index.js"
   },
   "dependencies": {
     "itty-router": "^5.0.17",
